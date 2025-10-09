@@ -1,0 +1,36 @@
+[device.syr0] #sugar_pump -1
+address = 0
+type = "Elite11"
+port = "COM5"
+syringe_diameter = "10.3 mm"
+syringe_volume = "5 ml"
+
+[device.syr4] #hydrazine_pump -1
+address = 4   # This is the address of the syringe pump; check the labe
+type = "Elite11"
+port = "COM5"
+syringe_diameter = "7.608 mm"
+syringe_volume = "2.5 ml"
+
+[device.syr3] #hydrazine_pump -2
+address = 3
+type = "Elite11"
+port = "COM5"
+syringe_diameter = "7.608 mm"
+syringe_volume = "2.5 ml"
+
+[device.syr5]  #sugar_pump -2
+address = 5
+type = "Elite11"
+port = "COM5"
+syringe_diameter = "10.3 mm"
+syringe_volume = "5 ml"
+
+[device.6PortValve]
+type = "KnauerValve"
+mac_address = "00:80:a3:b4:ce:80"
+network = "141.14.*.*"
+
+[device.r2]
+type = "R2"
+port = "COM6"
