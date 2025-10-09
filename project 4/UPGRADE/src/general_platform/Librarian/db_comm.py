@@ -255,16 +255,16 @@ if __name__ == "__main__":
                                )
     ctrl_condition["concentration"] = Calc.calc_concentration(condition=ctrl_condition, unit_include=False)
 
-    if socket.gethostname() == 'BSMC-YMEF002121':
+    if socket.gethostname() == '':
 
         DB = DatabaseMongo(experiment_document=Experiment,
                            ctrl_document=CtrlExperiment,
                            database_name="GL_data_1", database_uri="mongodb://localhost:27017")
 
-    elif socket.gethostname() == 'BSPC-8WSHWS2':
+    elif socket.gethostname() == '141.14.52.210':
         DB = DatabaseMongo(experiment_document=Experiment,
                            ctrl_document=CtrlExperiment,
                            database_name="GL_data_1",
-                           database_uri="mongodb://bs-flow:microreactor7@141.14.52.210:27017")
+                           database_uri="mongodb://*:*@141.14.52.210:27017")
 
     asyncio.run(main(DB))
