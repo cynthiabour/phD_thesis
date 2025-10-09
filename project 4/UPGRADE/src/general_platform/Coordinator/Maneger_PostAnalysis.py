@@ -19,12 +19,12 @@ from BV_experiments.src.general_platform.Librarian.db_models import ExperimentSt
 
 
 class PostAnalManeger:
-    logger.add(r"W:\BS-FlowChemistry\People\Wei-Hsin\BV_data\logger\overall_analysis_running.log")
+    logger.add(r"..\logger\overall_analysis_running.log")
 
     def __init__(self,
                  DB: DatabaseMongo,
                  base_exp_info,
-                 analysed_folder: str = r"W:\BS-FlowChemistry\data\exported_chromatograms",
+                 analysed_folder: str = r"..\exported_chromatograms",
                  ):
 
         self._base_exp_info = base_exp_info
@@ -141,18 +141,18 @@ if __name__ == "__main__":
     from BV_experiments.Example3_debenzylation.db_doc import Experiment, CtrlExperiment
     from BV_experiments.Example3_debenzylation.db_doc import SecondDebenzylation
 
-    if socket.gethostname() == 'BSMC-YMEF002121':
+    if socket.gethostname() == '':
 
         DB = DatabaseMongo(experiment_document=Experiment,
                            ctrl_document=CtrlExperiment,
                            database_name="GL_data_1",
                            database_uri="mongodb://localhost:27017")
 
-    elif socket.gethostname() == 'BSPC-8WSHWS2':
+    elif socket.gethostname() == '141.14.52.270':
         DB = DatabaseMongo(experiment_document=Experiment,
                            ctrl_document=CtrlExperiment,
                            database_name="GL_data_1",
-                           database_uri="mongodb://bs-flow:microreactor7@141.14.52.270:27017")
+                           database_uri="mongodb://*:*@141.14.52.270:27017")
 
     # start the analysis
     anal_manger = PostAnalManeger(DB, base_exp_info=SecondDebenzylation.hplc_config_info)
