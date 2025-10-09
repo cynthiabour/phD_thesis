@@ -48,20 +48,20 @@ async def optimizer_main():
         condition["exp_code"] = experiment.exp_code
         return condition
 
-    # logger.add(r"W:\BS-FlowChemistry\People\Wei-Hsin\BV_data\logger\overall_optimizer_running.log")
+    # logger.add(r"..\BV_data\logger\overall_optimizer_running.log")
     #
     # # Initialize optimizer & Librarian
     # logger.info(f"initialize database and optimizer")
     # e = 0
     #
     # # Initialize Librarian and the optimizer
-    # if socket.gethostname() == 'BSMC-YMEF002121':
+    # if socket.gethostname() == '':
     #     DB = database_mongo(database_name="BV_data_1", database_uri="mongodb://localhost:27017")
     #     optimizer = Optimizer(num_cpus="1", training_data="training_set")  # training_set save old data of cyclobutanone
     #
-    # elif socket.gethostname() == 'BSPC-8WSHWS2':
+    # elif socket.gethostname() == '141.14.52.210':
     #     DB = database_mongo(database_name="BV_data_1",
-    #                         database_uri="mongodb://bs-flow:microreactor7@141.14.52.210:27017")
+    #                         database_uri="mongodb://*:*@141.14.52.210:27017")
     #     optimizer = Optimizer(num_cpus="7", training_data="training_set")
     #
     # await DB.initialize()
@@ -344,10 +344,10 @@ async def experiment_main():
 
 
 async def main():
-    if socket.gethostname() == 'BSMC-YMEF002121':
+    if socket.gethostname() == '':
         await experiment_main()
         # await optimizer_main()
-    elif socket.gethostname() == 'BSPC-8WSHWS2':
+    elif socket.gethostname() == '141.14.52.210':
         await optimizer_main()
         # logger.error("the experiment platform is not on this computer...")
 
