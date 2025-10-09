@@ -14,13 +14,13 @@ from BV_experiments.src.general_platform.Analysis.anal_hplc_result import proces
 
 async def analysis_main():
     # both computer can run this code...
-    logger.add(r"W:\BS-FlowChemistry\People\Wei-Hsin\BV_data\logger\overall_analysis_running.log")
+    logger.add(r"..\logger\overall_analysis_running.log")
 
     logger.info(f"initialize database")
-    if socket.gethostname() == 'BSMC-YMEF002121':
+    if socket.gethostname() == '':
         DB = database_mongo("BV_data_1", database_uri="mongodb://localhost:27017")
-    elif socket.gethostname() == 'BSPC-8WSHWS2':
-        DB = database_mongo("BV_data_1", database_uri="mongodb://bs-flow:microreactor7@141.14.52.210:27017")
+    elif socket.gethostname() == '141.14.52.210':
+        DB = database_mongo("BV_data_1", database_uri="mongodb://*:*@141.14.52.210:27017")
 
     await DB.initialize()
 
@@ -109,17 +109,17 @@ async def analysis_main():
 
 async def reprocess_exp():
     logger.info(f"initialize database")
-    if socket.gethostname() == 'BSMC-YMEF002121':
+    if socket.gethostname() == '':
         DB = database_mongo("BV_data_1", database_uri="mongodb://localhost:27017")
-    elif socket.gethostname() == 'BSPC-8WSHWS2':
-        DB = database_mongo("BV_data_1", database_uri="mongodb://bs-flow:microreactor7@141.14.52.210:27017")
+    elif socket.gethostname() == '141.14.52.210':
+        DB = database_mongo("BV_data_1", database_uri="mongodb://*:*@141.14.52.210:27017")
 
     await DB.initialize()
 
     # client = AsyncIOMotorClient("mongodb://localhost:27017")
     # await init_beanie(Librarian=client.BV_data_1, document_models=[Experiment])
     # exps = await Experiment.find(
-    #     Experiment.hplc_result["hplc_method"] == r"D:\Data2q\BV\BV_General_method_r1met_30min_025mlmin.MET"
+    #     Experiment.hplc_result["hplc_method"] == r"..\BV_General_method_r1met_30min_025mlmin.MET"
     # ).to_list()
 
     # for exp in exps:
@@ -130,7 +130,7 @@ async def reprocess_exp():
     #     await exp.save()
 
     # watching folder
-    analysed_samples_folder = r"W:\BS-FlowChemistry\data\exported_chromatograms"
+    analysed_samples_folder = r"..\exported_chromatograms"
 
     # # finished_exps
     # all_finished_exps = await DB.find_exps_by_state(exp_state=ExperimentState.FINISHED)
@@ -170,9 +170,9 @@ async def reprocess_exp():
 async def main():
     # await reprocess_exp()
     await analysis_main()
-    # if socket.gethostname() == 'BSMC-YMEF002121':
+    # if socket.gethostname() == '':
     #     await analysis_main()
-    # elif socket.gethostname() == 'BSPC-8WSHWS2':
+    # elif socket.gethostname() == '141.14.10.52':
     #     await analysis_main()
 
 
