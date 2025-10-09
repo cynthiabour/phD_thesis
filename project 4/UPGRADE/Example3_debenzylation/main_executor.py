@@ -42,7 +42,7 @@ async def executor_manager(DB: DatabaseMongo,
 
     async def start_platform():
         # Initialize logger
-        logger.add(r"W:\BS-FlowChemistry\People\Wei-Hsin\BV_data\logger\executor_manager_log.log")
+        logger.add(r"..\logger\executor_manager_log.log")
 
         # Initialize hardware & Librarian
         logger.info(f"initialize hardware")
@@ -195,7 +195,7 @@ async def executor_manager(DB: DatabaseMongo,
 
 if __name__ == "__main__":
     from BV_experiments.Example3_debenzylation.db_doc import FlowSetupDad, SecondDebenzylation
-    if socket.gethostname() == 'BSMC-YMEF002121':
+    if socket.gethostname() == '':
 
         DB = DatabaseMongo(experiment_document=Experiment,
                            ctrl_document=CtrlExperiment,
@@ -210,10 +210,10 @@ if __name__ == "__main__":
                 base_exp_info=SecondDebenzylation,
                 no_of_exp=0))
 
-    elif socket.gethostname() == 'BSPC-8WSHWS2':
+    elif socket.gethostname() == '141.14.52.270':
         DB = DatabaseMongo(experiment_document=Experiment,
                            ctrl_document=CtrlExperiment,
                            database_name="GL_data_1",
-                           database_uri="mongodb://bs-flow:microreactor7@141.14.52.270:27017")
+                           database_uri="mongodb://*:*@141.14.52.270:27017")
 
 
