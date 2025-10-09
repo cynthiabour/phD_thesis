@@ -21,13 +21,13 @@ async def analysis_manager(DB: DatabaseMongo,
     """
 
     # both computer can run this code...
-    logger.add(r"W:\BS-FlowChemistry\People\Wei-Hsin\BV_data\logger\overall_analysis_running.log")
+    logger.add(r"..\BV_data\logger\overall_analysis_running.log")
 
     logger.info(f"initialize database")
     await DB.initialize()
 
     # watching folder
-    analysed_samples_folder = r"W:\BS-FlowChemistry\data\exported_chromatograms"
+    analysed_samples_folder = r"\exported_chromatograms"
 
     while True:
         # find all experiments' state are analysing
@@ -105,72 +105,11 @@ def total_analysis(mongo_id: str,
                     "channel_3": {"raw": raw_result_280, "parsed": parse_result_280, "result": performance_result}}
     return hplc_results
 
-#
-# async def reprocess_exp():
-#     logger.info(f"initialize database")
-#     if socket.gethostname() == 'BSMC-YMEF002121':
-#         DB = database_mongo("BV_data_1", database_uri="mongodb://localhost:27017")
-#     elif socket.gethostname() == 'BSPC-8WSHWS2':
-#         DB = database_mongo("BV_data_1", database_uri="mongodb://bs-flow:microreactor7@141.14.52.210:27017")
-#
-#     await DB.initialize()
-#
-#     # client = AsyncIOMotorClient("mongodb://localhost:27017")
-#     # await init_beanie(Librarian=client.BV_data_1, document_models=[Experiment])
-#     # exps = await Experiment.find(
-#     #     Experiment.hplc_result["hplc_method"] == r"D:\Data2q\BV\BV_General_method_r1met_30min_025mlmin.MET"
-#     # ).to_list()
-#
-#     # for exp in exps:
-#     #     exp.exp_state = ExperimentState.ANALYSING
-#     #     # exp.hplc_result["hplc_method"] = r"D:\Data2q\BV\BV_General_method_r1met_30min_025mlmin.MET"
-#     #     # gradient_for_30min = {"time (min.)": "EluentA (%)", 0: 99, 1: 99, 5: 85, 12: 65, 25: 10, 27: 10, 28: 99, 30: 99}
-#     #     # exp.hplc_result["gradient"] = json.loads(json.dumps(gradient_for_30min))
-#     #     await exp.save()
-#
-#     # watching folder
-#     analysed_samples_folder = r"W:\BS-FlowChemistry\data\exported_chromatograms"
-#
-#     # # finished_exps
-#     # all_finished_exps = await DB.find_exps_by_state(exp_state=ExperimentState.FINISHED)
-#     # for exp in all_finished_exps:
-#     #     await DB.change_experiment_state(exp.id, n_state=ExperimentState.ANALYSING)
-#
-#     # # failed_exps
-#     # all_failed_exps = await DB.find_exps_by_state(exp_state=ExperimentState.FAILED)
-#     # for exp in all_failed_exps:
-#     #     await DB.change_experiment_state(exp.id, n_state=ExperimentState.ANALYSING)
-#
-#     # start to reprocessing...
-#     analysing_exps = await DB.find_exps_by_state(exp_state=ExperimentState.ANALYSING)
-#     for exp in analysing_exps:
-#         # general argument
-#         mongo_id = exp.id
-#
-#         file_path = Path(analysed_samples_folder) / Path(f"{mongo_id} - DAD 2.1L- Channel 2.txt")
-#
-#         # process from txt file to yield and conversion.
-#         hplc_results = processing_hplc_file(exp.id,
-#                                             file_path,
-#                                             exp.exp_condition.model_dump(),
-#                                             "tmob",
-#                                             analysed_samples_folder)
-#
-#         if not hplc_results["parsed_result_254"]:
-#             logger.error(f'experiment hplc analysis finished but fail to pursing the result......')
-#             await DB.change_experiment_state(mongo_id, ExperimentState.FAILED)
-#             await DB.update_analysis_result(mongo_id, hplc_results)
-#
-#         else:
-#             # save result back to exist document
-#             await DB.change_experiment_state(mongo_id, ExperimentState.FINISHED)
-#             await DB.update_analysis_result(mongo_id, hplc_results)
-
 
 if __name__ == "__main__":
     from BV_experiments.Example3_debenzylation.db_doc import Experiment, CtrlExperiment
 
-    if socket.gethostname() == 'BSMC-YMEF002121':
+    if socket.gethostname() == '':
 
         DB = DatabaseMongo(experiment_document=Experiment,
                            ctrl_document=CtrlExperiment,
@@ -179,10 +118,10 @@ if __name__ == "__main__":
 
         # fixme: change the no_of_exp to make sure you want to run blank or not
 
-    elif socket.gethostname() == 'BSPC-8WSHWS2':
+    elif socket.gethostname() == '141.14.52.270':
         DB = DatabaseMongo(experiment_document=Experiment,
                            ctrl_document=CtrlExperiment,
                            database_name="GL_data_1",
-                           database_uri="mongodb://bs-flow:microreactor7@141.14.52.270:27017")
+                           database_uri="mongodb://*:*@141.14.52.270:27017")
 
     asyncio.run(analysis_manager(DB))
