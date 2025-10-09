@@ -16,10 +16,10 @@ def find_latest_exp_code():
     :return:
     """
     from pymongo import MongoClient
-    if socket.gethostname() == 'BSMC-YMEF002121':
-        client = MongoClient('localhost', 27017)
-    elif socket.gethostname() == 'BSPC-8WSHWS2':
-        client = MongoClient("mongodb://bs-flow:microreactor7@141.14.52.210:27017")
+    if socket.gethostname() == '':
+        DB = database_mongo("BV_data_1", database_uri="mongodb://localhost:27017")
+    elif socket.gethostname() == '141.14.52.210':
+        DB = database_mongo("BV_data_1", database_uri="mongodb://*:*@141.14.52.210:27017")
 
     latest_exp = client.BV_data_1.phenylcyclobutanone.find_one(sort=[("created_at", -1)])
     latest_control = client.BV_data_1["phenylcyclobutanone-control"].find_one(sort=[("created_at", -1)])
