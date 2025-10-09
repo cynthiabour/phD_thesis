@@ -56,7 +56,7 @@ async def planner_manager(DB: DatabaseMongo,
                           num_cpus: int = 1,
                           ):
 
-    logger.add(r"W:\BS-FlowChemistry\People\Wei-Hsin\BV_data\logger\overall_optimizer_running.log")
+    logger.add(r"..\logger\overall_optimizer_running.log")
 
     # Initialize Planner & Librarian
     logger.info(f"initialize database and optimizer")
@@ -200,18 +200,18 @@ async def planner_manager(DB: DatabaseMongo,
 if __name__ == "__main__":
     from BV_experiments.Example3_debenzylation.db_doc import Experiment, CtrlExperiment, ExpCondRatio, Optimize_parameters
 
-    if socket.gethostname() == 'BSMC-YMEF002121':
+    if socket.gethostname() == '':
 
         DB = DatabaseMongo(experiment_document=Experiment,
                            ctrl_document=CtrlExperiment,
                            database_name="GL_data_1",
                            database_uri="mongodb://localhost:27017")
 
-    elif socket.gethostname() == 'BSPC-8WSHWS2':
+    elif socket.gethostname() == '141.14.52.270':
         DB = DatabaseMongo(experiment_document=Experiment,
                            ctrl_document=CtrlExperiment,
                            database_name="GL_data_1",
-                           database_uri="mongodb://bs-flow:microreactor7@141.14.52.270:27017")
+                           database_uri="mongodb://*:*@141.14.52.270:27017")
 
     from BV_experiments.Example3_debenzylation.db_doc import FlowSetupDad, SecondDebenzylation
     asyncio.run(
