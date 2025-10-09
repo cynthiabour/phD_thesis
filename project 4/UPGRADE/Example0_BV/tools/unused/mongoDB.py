@@ -8,7 +8,7 @@ from pymongo import MongoClient
 
 password = os.environ.get("MONGODB_PWD")
 
-connection_string = f"mongodb+srv://cynthiabour:mpikgchemistry2022@cluster0.glr1fvv.mongodb.net/?retryWrites=true&w=majority"
+connection_string = f"mongodb+srv://*:*@cluster0.glr1fvv.mongodb.net/?retryWrites=true&w=majority"
 
 client = MongoClient(connection_string)
 print(client)
