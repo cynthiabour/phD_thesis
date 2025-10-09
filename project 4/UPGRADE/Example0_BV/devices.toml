@@ -1,0 +1,108 @@
+[device.syr0] # high concentration mixture; EY
+address = 0
+type = "Elite11"
+port = "COM5"
+syringe_diameter = "7.28 mm"
+syringe_volume = "2.5 ml"
+baudrate = 115200
+
+[device.syr3]  # solvent
+address = 3
+type = "Elite11"
+port = "COM5"
+syringe_diameter = "14.567 mm"
+syringe_volume = "10 ml"
+
+[device.syr4]  # activator
+address = 4
+type = "Elite11"
+port = "COM5"
+syringe_diameter = "4.61 mm"
+syringe_volume = "1 ml"
+
+[device.syr5]  # quencher
+address = 5
+type = "Elite11"
+port = "COM5"
+syringe_diameter = "7.28 mm"
+syringe_volume = "2.5 ml"
+
+[device.syr6]   # smis
+address = 6
+type = "Elite11"
+port = "COM5"
+syringe_diameter = "7.28 mm"
+syringe_volume = "2.5 ml"
+
+[device.dad]
+type = "KnauerDAD"
+ip_address = "192.168.10.7"
+turn_on_d2 = false
+turn_on_halogen = false
+
+[device.r2]
+type = "R2"
+port = "COM6"
+
+[device.O2MFC]
+type = "MFC"
+port = "COM7"
+address = 6
+max_flow = 10
+#gas = "oxygen"
+
+[device.pressMFC]
+type = "MFC"
+port = "COM7"
+address = 1
+max_flow = 10
+
+[device.pressEPC]
+type = "EPC"
+port = "COM7"
+address = 2
+max_pressure = 10
+
+[device.HPLCvalve]
+type = "KnauerValve"
+mac_address = "00:80:a3:ce:7f:08"
+network = "141.14.*.*"
+
+[device.Knauer-pumpM]
+type = "AzuraCompact"
+mac_address = "00:80:a3:ba:ef:3b"
+network = "141.14.*.*"
+
+[device.bubble-sensor-power]
+type = "PhidgetPowerSource5V"
+vint_serial_number=627768
+vint_hub_port =3
+vint_channel=0
+
+[device.bubble-sensor-measure]
+type = "PhidgetBubbleSensor"
+vint_serial_number=627768
+vint_hub_port =0
+vint_channel=0
+data_interval=20
+
+#[device.flowir]
+#type = "IcIR"
+## ip_address = "192.168.1.55"
+#url = "opc.tcp://localhost:62552/iCOpcUaServer"
+#template = "30sec_2days.iCIRTemplate"
+
+#[device.Collector]
+#type = "KnauerValve"
+#mac_address = "00:80:a3:ce:8e:3a"
+#network = "192.168.10.*"
+
+#[device.Knauer_valve_cce8e47]
+#type = "KnauerValve"
+#mac_address = "00:80:a3:ce:8e:47"
+
+[device.ML600]
+type = "ML600"
+port = "COM11"
+address = 1
+syringe_volume = "1 ml"

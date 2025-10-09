@@ -1,0 +1,122 @@
+[device.syr0] #TBN
+address = 0
+type = "Elite11"
+port = "COM5"
+syringe_diameter = "10.3 mm"
+syringe_volume = "5 ml"
+baudrate = 115200
+
+[device.syr3]  #ACN
+address = 3
+type = "Elite11"
+port = "COM5"
+syringe_diameter = "14.567 mm"
+syringe_volume = "10 ml"
+force = 70
+
+[device.syr4] # DDQ
+address = 4
+type = "Elite11"
+port = "COM5"
+syringe_diameter = "7.28 mm"
+syringe_volume = "2.5 ml"
+force = 50
+
+[device.syr5]   #SM+IS
+address = 5
+type = "Elite11"
+port = "COM5"
+syringe_diameter = "7.28 mm"
+syringe_volume = "2.5 ml"
+force = 50
+
+[device.syr6]   #DCM
+address = 6
+type = "Elite11"
+port = "COM5"
+syringe_diameter = "14.567 mm"
+syringe_volume = "10 ml"
+force = 70
+
+[device.dad]
+type = "KnauerDAD"
+ip_address = "192.168.10.7"
+turn_on_d2 = false
+turn_on_halogen = false
+
+[device.r2]
+type = "R2"
+port = "COM6"
+
+[device.O2MFC]
+type = "MFC"
+port = "COM7"
+address = 6
+max_flow = 10
+#gas = "oxygen"
+
+[device.pressMFC]
+type = "MFC"
+port = "COM7"
+address = 1
+max_flow = 10
+
+[device.pressEPC]
+type = "EPC"
+port = "COM7"
+address = 2
+max_pressure = 10
+
+[device.HPLCvalve]
+type = "KnauerValve"
+mac_address = "00:80:a3:ce:7f:08"
+network = "141.14.*.*"
+
+[device.Knauer-pumpM]
+type = "AzuraCompact"
+mac_address = "00:80:a3:ba:ef:3b"
+network = "141.14.*.*"
+
+[device.AnalValve]
+type = "KnauerValve"
+mac_address = "00:80:a3:b4:ce:80"
+network = "141.14.*.*"
+
+[device.Knauer-pumpA]
+type = "AzuraCompact"
+mac_address = "00:80:a3:ba:c3:4a"
+network = "141.14.*.*"
+
+#[device.Knauer-pumpB]
+#type = "AzuraCompact"
+#mac_address = "00:80:a3:ba:bf:e2"
+#network = "141.14.*.*"
+
+#[device.ML600]
+#type = "ML600"
+#port = "COM11"
+#address = 1
+#syringe_volume = "5 ml"
+
+
+#[device.bubble-sensor-power]
+#type = "PhidgetPowerSource5V"
+#vint_serial_number=627768
+#vint_hub_port =3
+#vint_channel=0
+
+#[device.bubble-sensor-measure]
+#type = "PhidgetBubbleSensor"
+#vint_serial_number=627768
+#vint_hub_port =0
+#vint_channel=0
+#data_interval=20
+
+#[device.Collector]
+#type = "KnauerValve"
+#mac_address = "00:80:a3:ce:8e:3a"
+#network = "192.168.10.*"
+
+#[device.Knauer_valve_cce8e47]
+#type = "KnauerValve"
+#mac_address = "00:80:a3:ce:8e:47"
